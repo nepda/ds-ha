@@ -22,6 +22,7 @@
  * @param int* erat ein integer-Feld von 0..M mit index hier werden alle Zahlen von 2..M gespeichert.
  * @param int* marked ein integer-Feld von 0..M her werden alle Streichungen gespeichert.
  * @return void
+ * @see strikesAndPrimes ermittelt die Anzahl der Streichungen und Primzahlen von 2..M
  */
 void eratosthenes (int M, int* erat, int* marked)
 {
@@ -29,7 +30,6 @@ void eratosthenes (int M, int* erat, int* marked)
     /**
      * @var int erat das Feld aller natürlichen Zahlen ab 2 bis M
      * @var int marked Markierungegn bzw. Streichungen bezügliche erat bei marked, gilt eine -1 als unmarkiert und eine 1 als markiert.
-     * @see strikesAndPrimes ermittelt die Anzahl der Streichungen und Primzahlen von 2..M
      */
     int erat[M], marked[M];
 
