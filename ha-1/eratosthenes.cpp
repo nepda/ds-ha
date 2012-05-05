@@ -1,32 +1,44 @@
 
-
-void eratosthenes (int M)
+/**
+ * Sieb des Eratosthenes - ohne Rückgabe
+ *
+ * Beispiel:
+ * <code>
+ * int sieb_groesse = 36;
+ * int erat[sieb_groesse], marked[sieb_groesse];
+ * 
+ * eratosthenes(sieb_groesse, erat, marked);
+ *
+ * // jetzt sieht das so aus:
+ * // erat[2] = 2; marked[2] = -1 // Prim.
+ * // erat[3] = 3; marked[3] = -1 // Prim.
+ * // erat[4] = 4; marked[4] = 1  // keine Prim.
+ * // erat[5] = 5; marked[5] = -1 // Prim.
+ * // erat[6] = 6; marked[6] = 1  // keine Prim.
+ * // ...
+ * </code>
+ *
+ * @param int M die Größe des Eratosthenes Feldes
+ * @param int* erat ein integer-Feld von 0..M mit index hier werden alle Zahlen von 2..M gespeichert.
+ * @param int* marked ein integer-Feld von 0..M her werden alle Streichungen gespeichert.
+ * @return void
+ */
+void eratosthenes (int M, int* erat, int* marked)
 {
 
     /**
      * @var int erat das Feld aller natürlichen Zahlen ab 2 bis M
-     * @var int marked Markierungegn bzw. Streichungen bezügliche erat
-     *       bei marked, gilt eine -1 als unmarkiert und eine 1 als markiert.
+     * @var int marked Markierungegn bzw. Streichungen bezügliche erat bei marked, gilt eine -1 als unmarkiert und eine 1 als markiert.
+     * @see strikesAndPrimes ermittelt die Anzahl der Streichungen und Primzahlen von 2..M
      */
     int erat[M], marked[M];
 
-    /**
-     * @var int mark_count zählt alle Streichungen bzw. Markierungen
-     */
-    int mark_count = -1;
-
-    int n=2; // mit Zahl 2 beginnend
-
-    // 1. Schreibe mit Zahl 2 beginnend alle folgenden natürlichen Zahlen
-    // bis zu einem frei wählbaren Maximalwert M auf.
-    while (n <= M)
-    // eratosthenes feld mit 2..M befüllen UND alle als unmarkiert markieren
+    // erat und marked initialisieren
+    for(int k = 2; k <= M; k++)
     {
-	marked[n] = -1; // zunächst sind alle Zahlen unmarkiert
-	erat[n] = n; // alle folgenden nat. Zahlen
-	n++;
+	erat[k] = k; // key = value
+	marked[k] = -1; // alle Felder sind vorerst unmarkiert
     }
-
 
     // gehe jede Zelle in Feld erat durch ( ab 2 )
     for(int x = 2; x <= M; x++)
@@ -38,23 +50,13 @@ void eratosthenes (int M)
 	    if (marked[c] == -1)
 	    {
 		// markiere alle vielfachen dieser Zahl
-		markMultiples(c, M, marked, mark_count);
+		for(int l = c*c; l < M; l += c)
+		{
+		    marked[l] = 1;
+		}
 		break; // breche diese (innere) Schleife ab
 	    }
 	}
     }
-
-    // testoutput - start
-    for(int i = 2; i <= M; i++)
-    {
-	printf("\nerat[%i]: %i, %i", i, erat[i], marked[i]);
-    }
-
-    printf("\nEs wurden %i zellen markiert", mark_count);
-
-    // testoutput - ende
 }
-
-
-
 
