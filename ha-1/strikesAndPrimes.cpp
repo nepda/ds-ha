@@ -1,38 +1,52 @@
 
-
+/**
+ * Ermittelt die Anzahl der Streichungen und Primzahlen nach Eratosthenes
+ *
+ * Doppelte Streichungen werden doppelt gezählt.
+ *
+ * @param int sieb_groesse N, von 2..N die Feldgröße
+ * @param int &strikes_count hier wird die Anzahl der Streichungen gespeichert
+ * @param int &prime_count hier wird die Anzahl der Primzahlen gespeichert
+ * @return void
+ */
 void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
 {
-    int sieb[sieb_groesse];
-    int strikes[sieb_groesse];
+    // Sieb-Feld und Markierungsfeld deklarieren
+    int sieb[sieb_groesse]; // index gleich value
+    int strikes[sieb_groesse]; // unmarkiert: -1, markiert: 1
 
+    // Zähler initialisieren
     strikes_count = 0;
     prime_count = 0;
     
+    // Siebfeld und Markierungsfeld initialisieren
     for(int k = 2; k <= sieb_groesse; k++)
     {
 	sieb[k] = k;
 	strikes[k] = -1;
     }
 
+    // jede Zelle in Siebfeld ab 2
     for(int i = 2; i <= sieb_groesse; i++)
     {
+	// ab aktueller Zelle (i) alle weiteren Zellen (j)
 	for(int j = i; j <= sieb_groesse; j++)
 	{
+	    // wenn aktuelle Zelle j unmarkiert ist
 	    if (strikes[j] == -1)
 	    {
-		// mark multiples;
-
+		// alle vielfachen von Zellen l ab dem Quadrat der aktuellen Primzahl j
 		for(int l = j*j; l < sieb_groesse; l += j)
 		{
 		    ++strikes_count;
-		    strikes[l] = 1;
+		    strikes[l] = 1; // markieren
 		}
-
 		break;
 	    }
 	}
     }
 
+    // gehe Markierungsfeld durch umd Primzahlen zu zählen
     for(int m = 2; m <= sieb_groesse; m++)
     {
 	if (strikes[m] == -1)
@@ -40,4 +54,7 @@ void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
 	    ++prime_count;
 	}
     }
+    --prime_count; // da mit 0 angefangen wurde, müssen beide Counter dekrementiert werden
+    --strikes_count;
 }
+
