@@ -1,3 +1,5 @@
+
+#include <iostream>
 #include <stdio.h>
 
 // frei wählbares Maximum N:
@@ -53,7 +55,7 @@ void eratosthenes (int M)
     }
 
     // testoutput - start
-    for(int i = 0; i <= M; i++)
+    for(int i = 2; i <= M; i++)
     {
 	printf("\nerat[%i]: %i, %i", i, erat[i], marked[i]);
     }
@@ -67,7 +69,7 @@ void eratosthenes (int M)
 
 void markMultiples(int y, int M, int * marked, int &mark_count)
 {
-    for(int c = y*y; c <= M; c += y)
+    for(int c = y*y; c < M; c += y)
     {
 	printf("x%i", mark_count);
 	mark_count = mark_count + 1;
@@ -80,7 +82,13 @@ void markMultiples(int y, int M, int * marked, int &mark_count)
 
 int main ()
 {
-    eratosthenes(76);
+    
+    int sieb;
+
+    std::cout << "Siebgroesse eingeben: " << std::endl;
+    std::cin>> sieb;
+
+    eratosthenes(sieb);
     return 0;
 }
 
