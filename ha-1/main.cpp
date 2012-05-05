@@ -1,7 +1,8 @@
 
+#include <iostream>
 #include <stdio.h>
 
-#include "countErat.cpp"
+#include "markMultiples.cpp"
 #include "eratosthenes.cpp"
 
 

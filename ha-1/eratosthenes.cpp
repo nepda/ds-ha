@@ -52,9 +52,9 @@ void eratosthenes (int M)
 
     printf("\nEs wurden %i zellen markiert", mark_count);
 
-    printf("\n\n.bye.");
     // testoutput - ende
 }
+
 
 
 
