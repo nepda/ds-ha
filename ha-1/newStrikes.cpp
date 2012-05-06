@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <iostream>
+// #include <stdio.h>
+// #include <iostream>
 
 
 /**
@@ -51,6 +51,7 @@ void newStrikes (long unsigned int groesse, long unsigned int* sieb, long unsign
 
 }
 
+/*
 
 int main ()
 {
@@ -79,4 +80,6 @@ int main ()
     printf("\n");
     return 0;
 }
+*/
 
+int main () { return 0; }
