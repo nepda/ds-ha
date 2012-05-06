@@ -31,7 +31,7 @@ void eratosthenes (int M, int* erat, int* marked)
      * @var int erat das Feld aller natürlichen Zahlen ab 2 bis M
      * @var int marked Markierungegn bzw. Streichungen bezügliche erat bei marked, gilt eine -1 als unmarkiert und eine 1 als markiert.
      */
-    int erat[M], marked[M];
+//    int erat[M], marked[M];
 
     // erat und marked initialisieren
     for(int k = 2; k <= M; k++)

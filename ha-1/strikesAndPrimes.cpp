@@ -26,6 +26,8 @@ void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
 	strikes[k] = -1;
     }
 
+    // printf("kein Problem mit init.\n");
+
     // jede Zelle in Siebfeld ab 2
     for(int i = 2; i <= sieb_groesse; i++)
     {
@@ -49,12 +51,21 @@ void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
     // gehe Markierungsfeld durch umd Primzahlen zu zählen
     for(int m = 2; m <= sieb_groesse; m++)
     {
+	printf("strikes[%i] = %i\n", m, strikes[m]);
 	if (strikes[m] == -1)
 	{
 	    ++prime_count;
 	}
     }
+    
+    /*
     --prime_count; // da mit 0 angefangen wurde, müssen beide Counter dekrementiert werden
-    --strikes_count;
+    
+    ++strikes_count;
+    if (strikes_count > 0)
+        --strikes_count;
+
+*/
+
 }
 
