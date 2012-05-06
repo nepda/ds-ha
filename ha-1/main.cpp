@@ -35,20 +35,19 @@ int main ()
     }
 
 
-/*
     int l;
     int j;
-    for(int k = 2; k <= 20; k++)
+    for(int k = 2; k <= sieb_groesse; k++)
     {
 	l = 2;
 	for(j = 1; j < k; j++)
 	{
 	    l *= 2;
 	}
+
 	strikesAndPrimes(l, strikes_count, prime_count);
 	printf("Das Sieb mit Groesse %i hat %i Primzahlen, beim Alg. wurden %i Zellen gestrichen.\n", l, prime_count, strikes_count);
     }
-*/
 
     strikesAndPrimes(sieb_groesse, strikes_count, prime_count);
 

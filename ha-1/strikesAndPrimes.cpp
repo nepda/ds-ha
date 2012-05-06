@@ -12,8 +12,8 @@
 void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
 {
     // Sieb-Feld und Markierungsfeld deklarieren
-    int sieb[sieb_groesse]; // index gleich value
-    int strikes[sieb_groesse]; // unmarkiert: -1, markiert: 1
+    long unsigned int sieb[sieb_groesse]; // index gleich value
+    long int strikes[sieb_groesse]; // unmarkiert: -1, markiert: 1
 
     // Zähler initialisieren
     strikes_count = 0;
@@ -40,7 +40,7 @@ void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
 		// alle vielfachen von Zellen l ab dem Quadrat der aktuellen Primzahl j
 		for(int l = j*j; l < sieb_groesse; l += j)
 		{
-		    ++strikes_count;
+		    strikes_count++;
 		    strikes[l] = 1; // markieren
 		}
 		break;
@@ -51,13 +51,15 @@ void strikesAndPrimes (int sieb_groesse, int &strikes_count, int &prime_count)
     // gehe Markierungsfeld durch umd Primzahlen zu zählen
     for(int m = 2; m <= sieb_groesse; m++)
     {
-	printf("strikes[%i] = %i\n", m, strikes[m]);
+	// printf("strikes[%i] = %i\n", m, strikes[m]);
 	if (strikes[m] == -1)
 	{
-	    ++prime_count;
+	    prime_count++;
 	}
     }
     
+    prime_count--;
+    strikes_count--;
     /*
     --prime_count; // da mit 0 angefangen wurde, müssen beide Counter dekrementiert werden
     
