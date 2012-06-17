@@ -68,7 +68,7 @@ class MatrixStore {
 			tmp->isSet = true;
 		};
 		
-		int getLineCount()
+		int getRowCount()
 		{
 			return this->rows;
 		};
