@@ -176,6 +176,15 @@ class Matrix {
 			std::cout << std::endl;
 		}
 
+		/**
+		 * Transponieren der eigenen Matrix
+		 *
+		 * Maximal gibt es n=(cols*rows) Elemente
+		 *
+		 * Da jedes Element genau einmal bearbeitet werden muss ergibt sich:
+		 *
+		 *    Komplexitaet:  O(n)
+		 */
 		void trp ()
 		{
 			int cols = this->getColCount();
@@ -221,6 +230,16 @@ class Matrix {
 			return neu;
 		};
 
+
+		/**
+		 * Addition einer Matrix zu der eigenen
+		 *
+		 *
+		 * Es wird jedes Element einmal durchgegangen, daher wie bei Matrix::trp()
+		 *
+		 *    Komplexitaet:  O(n)
+		 *
+		 */
 		void add(Matrix &m)
 		{
 			int cols = this->getColCount();
@@ -228,13 +247,13 @@ class Matrix {
 
 			if (cols != m.getColCount())
 			{
-				/*debug*/std::cout << "Matrix::add(Matrix &m) Spaltenanzahl stimmt nicht überein, abbruch" << std::endl;
+				/*debug*/std::cout << "\nMatrix::add(Matrix &m) Matrizen sind nicht vom gleichen Typ, koennen nicht addiert werden.\n" << std::endl;
 				return;
 			}
 
 			if (rows != m.getRowCount())
 			{
-				/*debug*/std::cout << "Matrix::add(Matrix &m) Zeilenanzahl stimmt nicht überein, abbruch" << std::endl;
+				/*debug*/std::cout << "\nMatrix::add(Matrix &m) Matrizen sind nicht vom gleichen Typ, koennen nicht addiert werden.\n" << std::endl;
 				return;
 			}
 
@@ -249,6 +268,18 @@ class Matrix {
 			return;
 		}
 
+
+		/**
+		 * Multiplikation, das Ergebnis wird zurueckgegeben
+		 *
+		 * Für jedes Element muss eine Spalte multipliziert werden, komplexität etwas höher als bei Matrix::trp() und Matrix::add()
+		 *
+		 *    Komplexitaet:  O(n*rows*cols)
+		 *                                | rows*cols = n
+		 *                                | ---> Schlussfolgerung vermutlich nicht ganz richtig.
+		 *                   O(n^2)
+		 *
+		 */
 		Matrix* mul(Matrix &m)
 		{
 			int cols = this->getColCount();
@@ -302,15 +333,21 @@ class Matrix {
 
 					multi->setIndex(i, j, n_val);
 
-					std::cout << std::endl;
+					/*debug*///std::cout << std::endl;
 				}
 			}
 			return multi;
 		};
 
+
+		/**
+		 * Test auf Symmetrie
+		 *
+		 * Komplexitaet:  O(n)
+		 *
+		 */
 		bool sym()
 		{
-
 			Matrix* transponierteMatrix = this->trpReturn();
 
 			int t_rows = transponierteMatrix->getRowCount();
@@ -342,7 +379,7 @@ class Matrix {
 			return true;
 		};
 
-		bool orth()
+		bool BETA_orth()
 		{
 
 			int rows = this->getRowCount();
