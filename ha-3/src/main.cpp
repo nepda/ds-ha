@@ -21,6 +21,8 @@ int main () {
 	m->set(a);	
 	m->out();
 	m->trp();
+	
+	std::cout << "\n" << std::endl;
 	m->out();
 	
 	return 0;

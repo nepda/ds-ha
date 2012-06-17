@@ -177,5 +177,19 @@ class Matrix {
 			delete this->storage;
 			this->storage = neu;
 		};
-	
+		
+		void add(Matrix &m)
+		{
+			
+		}
+		
+		void mul(Matrix &m)
+		{
+			
+		};
+		
+		bool sym()
+		{
+			
+		};
 };
