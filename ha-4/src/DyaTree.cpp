@@ -6,3 +6,12 @@
  */
 
 
+DyaTree::DyaTree()
+{
+	this->root = 0;
+};
+
+DyaTree::~DyaTree()
+{
+
+};
