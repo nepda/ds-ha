@@ -1,20 +1,15 @@
 /**
  * Datenstrukturen SS2012 - Hausaufgabe 4
- * // DyaTree.hpp
+ * // nepdaLib.cpp
  *
  * @author Nepomuk Frädrich 247041 <nepf@informatik.tu-chemnitz.de>
  */
 
-#ifndef DYATREE_H
-#define DYATREE_H
 
-class DyaTree {
 
+int nep::strlen(char* str)
+{
+	int length = 0;
+	while (str[length] != '\0') ++length;
+	return length;
 };
-
-
-#include "DyaTree.cpp"
-#endif
-
-
-

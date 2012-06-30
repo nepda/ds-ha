@@ -13,11 +13,11 @@ class DA {
 
 public:
 
-	bool isDA(char*);
-	bool isOperator(char);
+	static bool isDA(char*);
+	static bool isOperator(char);
 
-	bool isOperant(DA*);
-	bool isOperant(char);
+	static bool isOperant(DA*);
+	static bool isOperant(char);
 };
 
 

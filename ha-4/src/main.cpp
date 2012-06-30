@@ -8,7 +8,11 @@
 #include <iostream>
 #include <stdio.h>
 
+#include "nepdaLib.hpp"
+
 #include "DA.hpp"
+#include "exprStack.hpp"
+#include "Bracket.hpp"
 #include "DyaTree.hpp"
 #include "DyaTreeMapper.hpp"
 
@@ -34,11 +38,13 @@ int main (int argc, char** argv)
 	std::cout << "input: " << input << std::endl;
 	#endif
 
-
-	DA* da = new DA;
-	da->isOperant('a');
+	std::cout << "nep::strlen('" << input << "'): " << nep::strlen(input) << std::endl;
 
 	dtm->readFromString(input);
+
+	Bracket* Br = new Bracket();
+
+	Br->pExpr2bExpr(input);
 
 
 

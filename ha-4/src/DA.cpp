@@ -32,22 +32,22 @@ bool DA::isOperator(char zeichen)
 
 bool DA::isOperant(DA* da)
 {
-	printf("DA::isOperant(DA* da)");
 	return true;
 };
 
 bool DA::isOperant(char zeichen)
 {
-	printf("DA::isOperant(char zeichen)");
-	printf("\nDA::isOperant(char): zeichen %c in int: %i\n", zeichen, zeichen);
-
-	if (zeichen >= 'a' || zeichen <= 'z')
+	//printf("DA::isOperant(char %c): ASCII: %i", zeichen, zeichen);
+	if (zeichen >= 'a' && zeichen <= 'z')
 	{
+		//printf("true\n");
 		return true;
 	}
-	if (zeichen >= '0' || zeichen <= '9')
+	if (zeichen >= '0' && zeichen <= '9')
 	{
+		//printf("true\n");
 		return true;
 	}
+	//printf("false\n");
 	return false;
 };
