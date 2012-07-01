@@ -13,6 +13,22 @@ DyaTree::DyaTree(DyaTreeNode* root)
 
 DyaTree::~DyaTree()
 {
+	DyaTree::deleteMe(this->root);
+};
+
+void DyaTree::deleteMe(DyaTreeNode* root)
+{
+	if (root->left)
+	{
+		this->deleteMe(root->left);
+	}
+
+	if (root->right)
+	{
+		this->deleteMe(root->right);
+	}
+
+	delete root;
 
 };
 
@@ -110,6 +126,5 @@ void DyaTree::_postorder(DyaTreeNode* root)
 	root->printData();
 	printf(" ");
 };
-
 
 

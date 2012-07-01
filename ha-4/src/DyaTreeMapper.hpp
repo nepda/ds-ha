@@ -17,6 +17,8 @@ private:
 
 public:
 	static DyaTreeNode* create(char*);
+
+	static void simplify(DyaTreeNode*);
 };
 
 #endif

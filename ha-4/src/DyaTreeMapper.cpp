@@ -103,3 +103,179 @@ int DyaTreeMapper::str2int(char* str, int start, int end)
 
 	return int_value;
 };
+
+
+
+void DyaTreeMapper::simplify(DyaTreeNode* root)
+{
+	if (!root)
+	{
+		return;
+	}
+
+	if (root->type == 'C' || root->type == 'N')
+	{
+		return;
+	}
+
+	DyaTreeMapper::simplify(root->left);
+	DyaTreeMapper::simplify(root->right);
+
+	switch(root->oper)
+	{
+		case '+':
+
+			// links zahl, rechts zahl => summe wird knoten
+			// rechts zahl, links zahl => summe wird knoten
+			if (root->left->type == 'N' && root->right->type == 'N')
+			{
+				root->type = 'N';
+				root->number = root->left->number + root->right->number;
+				delete root->left;
+				delete root->right;
+				root->left  = 0;
+				root->right = 0;
+			}
+
+			// links 0 (zahl), rechts buchstabe => rechts wird knoten
+			if (
+			  (root->left->type == 'N' && root->left->number == 0) // links zahl, 0
+			  &&
+			  (root->right->type == 'C') // rechts buchstabe
+			  )
+			{
+				root->type = 'C';
+				root->character = root->right->character;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+
+
+			// rechts 0 (zahl), links buchstabe => links wird knoten
+			if (
+			  (root->right->type == 'N' && root->right->number == 0) // rects zahl, 0
+			  &&
+			  (root->left->type == 'C')
+			  )
+			{
+				root->type = 'C';
+				root->character = root->left->character;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+
+			break;
+		case '-':
+
+
+			// links zahl, rechts zahl => differenz wird knoten
+			// rechts zahl, links zahl => differenz wird knoten
+			if (root->left->type == 'N' && root->right->type == 'N')
+			{
+				root->type = 'N';
+				root->number = root->left->number - root->right->number;
+				delete root->left;
+				delete root->right;
+				root->left  = 0;
+				root->right = 0;
+			}
+
+			// links 0 (zahl), rechts buchstabe => rechts wird knoten
+			if (
+			  (root->left->type == 'N' && root->left->number == 0) // links zahl, 0
+			  &&
+			  (root->right->type == 'C') // rechts buchstabe
+			  )
+			{
+				root->type = 'C';
+				root->character = root->right->character;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+
+
+			// rechts 0 (zahl), links buchstabe => links wird knoten
+			if (
+			  (root->right->type == 'N' && root->right->number == 0) // rects zahl, 0
+			  &&
+			  (root->left->type == 'C')
+			  )
+			{
+				root->type = 'C';
+				root->character = root->left->character;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+			break;
+		case '*':
+
+			// links oder rechts 0, knoten wird 0
+			if (
+			    (root->left->type == 'N' && root->left->number == 0) // links 0
+			    ||
+			    (root->right->type == 'N' && root->right->number == 0) // rechts 0
+			   )
+			{
+				root->type = 'N';
+				root->number = 0;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+
+			// links 1 (zahl), rechts zahl => rechte zahl wird knoten
+			if (root->left->type == 'N' && root->left->number == 1 && root->right->type == 'N')
+			{
+				root->type = 'N';
+				root->number = root->right->number;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+			// links 1 (zahl), rechts buchstabe => rechter buchstabe wird knoten
+			if (root->left->type == 'N' && root->left->number == 1 && root->right->type == 'C')
+			{
+				root->type = 'C';
+				root->character = root->right->character;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+
+			// rechts 1 (zahl), links zahl, linke zahl wird knoten
+			if (root->right->type == 'N' && root->right->number == 1 && root->left->type == 'N')
+			{
+				root->type = 'N';
+				root->number = root->left->number;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+			// rechts 1 (zahl), links buchstabe, linker buchstabe wird knoten
+			if (root->right->type == 'N' && root->right->number == 1 && root->left->type == 'C')
+			{
+				root->type = 'C';
+				root->character = root->left->character;
+				delete root->left;
+				delete root->right;
+				root->left = 0;
+				root->right = 0;
+			}
+
+			break;
+
+	}
+
+};

@@ -39,17 +39,23 @@ int main (int argc, char** argv)
 	#endif
 
 	DyaTreeNode* Dtn = DyaTreeMapper::create(input);
-
 	DyaTree* Dt = new DyaTree(Dtn);
-
-	printf("\nPre-Order: \n");
-	Dt->preorder();
 
 	printf("\nIn-Order: \n");
 	Dt->inorder();
 
+
+
 	printf("\nPost-Order: \n");
 	Dt->postorder();
+
+
+
+	printf("\nPre-Order: \n");
+	Dt->preorder();
+
+
+
 
 	//printf("_#_%s::%s::%i\n", __FILE__, __func__, __LINE__);
 

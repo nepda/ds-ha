@@ -23,6 +23,7 @@ public:
 
 	DyaTree(DyaTreeNode*);
 	~DyaTree();
+	void deleteMe(DyaTreeNode*);
 
 	DyaTreeNode* getRoot();
 
