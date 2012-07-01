@@ -42,9 +42,16 @@ int main (int argc, char** argv)
 
 	DyaTree* Dt = new DyaTree(Dtn);
 
-	Dt->print();
+	printf("\nPre-Order: \n");
+	Dt->preorder();
 
-	printf("_#_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+	printf("\nIn-Order: \n");
+	Dt->inorder();
+
+	printf("\nPost-Order: \n");
+	Dt->postorder();
+
+	//printf("_#_%s::%s::%i\n", __FILE__, __func__, __LINE__);
 
 
 

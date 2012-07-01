@@ -15,7 +15,9 @@ class DyaTree {
 private:
 	DyaTreeNode* root;
 
+	void _preorder(DyaTreeNode*);
 	void _inorder(DyaTreeNode*);
+	void _postorder(DyaTreeNode*);
 
 public:
 
@@ -24,7 +26,9 @@ public:
 
 	DyaTreeNode* getRoot();
 
+	void preorder();
 	void inorder();
+	void postorder();
 
 };
 

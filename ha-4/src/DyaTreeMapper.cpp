@@ -75,7 +75,7 @@ int DyaTreeMapper::findOpIndex(char* str, int start, int end)
 
 int DyaTreeMapper::str2int(char* str, int start, int end)
 {
-	printf("%c ->int-> %i\n", str[start],  str[start]-'0');
+	//printf("%c ->int-> %i\n", str[start],  str[start]-'0');
 
 	bool negativ = false;
 

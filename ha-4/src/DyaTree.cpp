@@ -21,9 +21,42 @@ DyaTreeNode* DyaTree::getRoot()
 	return this->root;
 };
 
+
+
+void DyaTree::preorder()
+{
+	this->_preorder(this->root);
+};
+
+
+void DyaTree::_preorder(DyaTreeNode* root)
+{
+	if (!root)
+	{
+		return;
+	}
+
+	root->printData();
+	printf(" ");
+
+	if (root->left)
+	{
+		DyaTree::_preorder(root->left);
+	}
+	if (root->right)
+	{
+		DyaTree::_preorder(root->right);
+	}
+
+};
+
+
+
+
+
 void DyaTree::inorder()
 {
-	this->_print(this->root);
+	this->_inorder(this->root);
 };
 
 
@@ -47,4 +80,36 @@ void DyaTree::_inorder(DyaTreeNode* root)
 		printf(")");
 	}
 };
+
+
+
+
+
+void DyaTree::postorder()
+{
+	this->_postorder(this->root);
+};
+
+
+void DyaTree::_postorder(DyaTreeNode* root)
+{
+	if (!root)
+	{
+		return;
+	}
+
+	if (root->left)
+	{
+		DyaTree::_postorder(root->left);
+	}
+	if (root->right)
+	{
+		DyaTree::_postorder(root->right);
+	}
+
+	root->printData();
+	printf(" ");
+};
+
+
 
