@@ -12,29 +12,20 @@ class DyaTree;
 
 class DyaTreeNode {
 
-private:
-	char data;
+public:
+
+	DyaTreeNode();
+
+	char oper;
+	char character;
+	int number;
+
+	char type; // O perator, C haracter, N umber
 
 	DyaTreeNode* left;
 	DyaTreeNode* right;
 
-public:
-
-	DyaTreeNode();
-	DyaTreeNode(char);
-	DyaTreeNode(char, DyaTreeNode*, DyaTreeNode*);
-	~DyaTreeNode();
-
-	void setData(char);
-	char getData();
-
-	void setLeft(DyaTreeNode*);
-	DyaTreeNode* getLeft();
-	void setLeft(DyaTree*);
-
-	void setRight(DyaTreeNode*);
-	DyaTreeNode* getRight();
-	void setRight(DyaTree*);
+	void printData();
 };
 
 #endif

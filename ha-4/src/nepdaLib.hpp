@@ -18,6 +18,8 @@ public:
 	static bool isDigit(char);
 	static bool isMathOp(char);
 	static bool isOperant(char);
+
+	static bool isSmallChar(char);
 };
 
 #endif

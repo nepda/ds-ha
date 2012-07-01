@@ -28,10 +28,10 @@ public:
 
 	char* pop();
 
-	char* dequeue();
-
 	void lookInside();
 	void lookInsideQueue();
+
+	void print();
 
 	char* toString();
 	char* toQueueString();

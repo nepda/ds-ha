@@ -6,9 +6,9 @@
  */
 
 
-DyaTree::DyaTree()
+DyaTree::DyaTree(DyaTreeNode* root)
 {
-	this->root = 0;
+	this->root = root;
 };
 
 DyaTree::~DyaTree()
@@ -19,4 +19,34 @@ DyaTree::~DyaTree()
 DyaTreeNode* DyaTree::getRoot()
 {
 	return this->root;
-}
+};
+
+void DyaTree::print()
+{
+	printf("\n==============");
+	printf("\n==============\n");
+
+	this->_print(this->root);
+
+
+	printf("\n==============");
+	printf("\n==============\n");
+};
+
+
+void DyaTree::_print(DyaTreeNode* node)
+{
+	node->printData();
+
+	if (node->left)
+	{
+		DyaTree::_print(node->left);
+	}
+
+	if (node->right)
+	{
+		DyaTree::_print(node->right);
+	}
+	printf("\n------------------------\n");
+};
+

@@ -8,7 +8,6 @@
 
 exprStack::exprStack()
 {
-	this->i = 0;
 	this->head = 0;
 };
 
@@ -27,22 +26,16 @@ exprStack::~exprStack()
 
 bool exprStack::isEmpty()
 {
-	return (head == 0);
+	/*debug*///printf("bool exprStack::isEmpty()\n");
+	return (this->head == 0);
 };
 
 void exprStack::push(char* data)
 {
-	printf("exprStack::push(char* '%s')\n", data);
-	this->i++;
-	exprStackNode* tmp = new exprStackNode();
-	tmp->setData(data);
-	tmp->i = this->i;
-	tmp->next = head;
-
-	if (!this->isEmpty())
-	head->prev = tmp;
-
-	head = tmp;
+	exprStackNode* temp = new exprStackNode();
+	temp->data = data;
+	temp->next = head;
+	head = temp;
 };
 
 void exprStack::push(char* data, int start, int end)
@@ -54,63 +47,40 @@ void exprStack::push(char* data, int start, int end)
 
 	for (int i = start; i < end; i++)
 	{
-		// printf("exprStack::push(char* '%s', int %i, int %i) str[%i] = data[%i]\n", data, start, end);
+		// /*debug*///printf("exprStack::push(char* '%s', int %i, int %i) str[%i] = data[%i]\n", data, start, end);
 		str[c] = data[i];
 		c++;
 	}
+	str[c] = '\0';
 
-	printf("exprStack::push(char* '%s', int %i, int %i), str: %s\n", data, start, end, str);
+	/*debug*///printf("exprStack::push(char* '%s', int %i, int %i), str: %s\n", data, start, end, str);
 	this->push(str);
 };
 
 void exprStack::push(char data)
 {
 	printf("exprStack::push(char '%c')\n", data);
-	this->i++;
-	exprStackNode* tmp = new exprStackNode();
-	tmp->setData(data);
-	tmp->i = this->i;
-	tmp->next = head;
+	char str[1];
 
-	if (!this->isEmpty())
-	head->prev = tmp;
+	str[0] = data;
+	str[1] = '\0';
 
-	head = tmp;
+	this->push(str);
 };
 
 char* exprStack::pop()
 {
 	if (!this->isEmpty())
 	{
-		char* data;
-		data = head->getData();
-
-		exprStackNode* tmp = head;
-
+		exprStackNode* temp = head;
+		char* data = head->data;
 		head = head->next;
-		head->prev = 0;
-
-		delete tmp;
-
+		delete temp;
 		return data;
 	}
 	return 0;
 };
 
-char* exprStack::dequeue()
-{
-	if (!this->isEmpty())
-	{
-		exprStackNode* tmp = this->head;
-		while (tmp->next)
-		{
-			tmp = tmp->next;
-		}
-		return tmp->getData();
-	}
-
-	return 0;
-};
 
 int exprStack::length()
 {
@@ -129,6 +99,16 @@ char* exprStack::toString()
 {
 	exprStackNode* tmp = this->head;
 
+
+	while (tmp)
+	{
+		printf("%s", tmp->getData());
+		tmp = tmp->next;
+	}
+
+	return 0;
+
+
 	int stack_size = this->length();
 
 	char* str[stack_size];
@@ -146,7 +126,7 @@ char* exprStack::toString()
 		tmp = tmp->next;
 		i++;
 	}
-	printf("DBG: toString(), len: %i\n", len);
+	/*debug*///printf("DBG: toString(), len: %i\n", len);
 
 	char* value = new char[len];
 
@@ -169,50 +149,104 @@ char* exprStack::toString()
 
 char* exprStack::toQueueString()
 {
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
 	exprStackNode* tmp = this->head;
 
 	while (tmp->next)
 	{
 		tmp = tmp->next;
-	} // tmp ist jetzt ende
+	}
+	//tmp = tmp->prev;
 
+	//printf("Ende Datum: %s", tmp->getData());
+
+	 // tmp ist jetzt ende
+
+
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
 
 	int stack_size = this->length();
 
 	char* str[stack_size];
 
+
+
 	int len = 0;
 
 	int i = 0;
 
+
 	while (tmp)
 	{
+
+		/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
 		str[i] = tmp->getData();
 
 		len += nep::strlen(str[i]);
 
 		tmp = tmp->prev;
 		i++;
-	}
-	printf("DBG: toStringQueue(), len: %i\n", len);
 
-	char* value = new char[len];
+	}
+
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
+	char* val = 0;
+
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
+	val = new char[len];
+
+
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
 
 	int j = 0;
 	int u;
 
+
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
+
 	for (int k = 0; k < stack_size; k++)
 	{
+
+		/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
 		u = nep::strlen(str[k]);
 		for(int c = 0; c < u; c++)
 		{
-			value[j] = str[k][c];
+			val[j] = str[k][c];
 			j++;
 		}
 	}
 
-	return value;
+	val[j] = '\0';
+
+	/*debug*///printf("_&$_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+	//return 0;
+
+
+
+	return val;
 };
 
 
+
+void exprStack::print()
+{
+	exprStackNode* tmp = this->head;
+
+	printf("\n------STACK VIEW-------\n");
+
+	while (tmp)
+	{
+		printf("[%s] ", tmp->getData());
+		tmp = tmp->next;
+	}
+	printf("\n-----------------------\n");
+
+};
 

@@ -38,10 +38,14 @@ int main (int argc, char** argv)
 	std::cout << "DBG: nep::strlen('" << input << "'): " << nep::strlen(input) << std::endl;
 	#endif
 
+	DyaTreeNode* Dtn = DyaTreeMapper::create(input);
 
-	exprStack* eS = exprStackMapper::create(input);
+	DyaTree* Dt = new DyaTree(Dtn);
 
-	printf("%s", eS->toQueueString());
+	Dt->print();
+
+	printf("_#_%s::%s::%i\n", __FILE__, __func__, __LINE__);
+
 
 
 	return 0;

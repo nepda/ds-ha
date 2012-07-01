@@ -8,13 +8,15 @@
 class exprStackNode
 {
 private:
-	char* data;
 
 public:
 
-	int i;
+	char* data;
+
 	exprStackNode* prev;
 	exprStackNode* next;
+
+
 
 	void setData(char*);
 	void setData(char); // wandelt den char in ein char* um

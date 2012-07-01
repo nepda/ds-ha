@@ -5,64 +5,101 @@
  * @author Nepomuk Frädrich 247041 <nepf@informatik.tu-chemnitz.de>
  */
 
-DyaTreeMapper::DyaTreeMapper()
-{};
-
-DyaTreeMapper::DyaTreeMapper(char* input)
+DyaTreeNode* DyaTreeMapper::create(char* str)
 {
-	this->readFromString(input);
-};
-
-DyaTree* DyaTreeMapper::readFromString(char* input)
-{
-	return this->parsePartString(input, 0, nep::strlen(input));
+	return DyaTreeMapper::createPart(str, 0, nep::strlen(str));
 };
 
 
-DyaTree* DyaTreeMapper::parsePartString(char* str, int left, int right)
+DyaTreeNode* DyaTreeMapper::createPart(char* str, int start, int end)
 {
-	if (right > nep::strlen(str))
+	int op_index = DyaTreeMapper::findOpIndex(str, start, end);
+
+	if (op_index != -1)
 	{
-		printf("ERROR: uhhhuuuuu das wäre ein seg-fault!\nright: %i\nleft: %i\nstrlen: %i\n", right, left, nep::strlen(str));
-		return NULL;
-	}
+		// Knoten
+		DyaTreeNode* root = new DyaTreeNode();
 
-	//printf("\nDBG: string: %s", str);
-	//printf("\nDBG: left: %i\nright: %i\nstrlen: %i\n", left, right, nep::strlen(str));
+		root->oper = str[op_index];
+		root->type = 'O'; // Operator
 
-	int open = 0;
-	int close = 0;
-	char c;
+		root->left = DyaTreeMapper::createPart(str, start, op_index);
+		root->right = DyaTreeMapper::createPart(str, op_index+1, end);
 
-	for(int register i = left; i <= right; i++)
-	{
-		c = str[i];
+		return root;
+	} else {
 
-		//printf("\nstr[%i]: %c", i, c);
+		// Blatt
+		DyaTreeNode* root = new DyaTreeNode();
 
-		if (c == '(') open++;
-		if (c == ')') close++;
-
-
-
-		if (DA::isOperator(c))
+		if (nep::isSmallChar(str[start]))
 		{
-			if (open - close == 1)
-			{
-				DyaTree* leftTree = this->parsePartString(str, left+1, i-1);
-				DyaTree* rightTree = this->parsePartString(str, i+1, right-1);
-				DyaTreeNode* rootNode = new DyaTreeNode();
-				rootNode->setData(c);
-				rootNode->setLeft(leftTree);
-				rootNode->setRight(rightTree);
+			root->character = str[start];
+			root->type = 'C'; // Character
+		} else {
 
-				printf("%c", c);
-
-
-				//Dt->setData(c);
-			}
+			root->number = DyaTreeMapper::str2int(str, start, end);
+			root->type = 'N';
 		}
+
+		root->left = 0;
+		root->right = 0;
+
+		return root;
+	}
+};
+
+
+int DyaTreeMapper::findOpIndex(char* str, int start, int end)
+{
+	int i = start;
+
+	while (str[i] != '\0' && i < end)
+	{
+		if (str[i] == '+' || str[i] == '-')
+			return i;
+
+		i++;
 	}
 
-	return new DyaTree();
+	i = start; // reset
+	while (str[i] != '\0' && i < end)
+	{
+		if (str[i] == '*')
+			return i;
+
+		i++;
+	}
+	return -1;
+};
+
+int DyaTreeMapper::str2int(char* str, int start, int end)
+{
+	printf("%c ->int-> %i\n", str[start],  str[start]-'0');
+
+	bool negativ = false;
+
+	if (str[start] == '-')
+	{
+		negativ = true;
+		start++;
+	}
+	if (str[start] == '+')
+	{
+		start++;
+	}
+
+
+	int int_value = str[start] - '0';
+
+	for (int i = start; i < end; i++)
+	{
+		int_value *= 10 + (str[i]-'0');
+	}
+
+	if (negativ)
+		int_value *= -1;
+
+
+	return int_value;
 };

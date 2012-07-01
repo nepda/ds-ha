@@ -10,14 +10,13 @@
 
 class DyaTreeMapper {
 
-	private:
+private:
+	static DyaTreeNode* createPart(char*, int, int);
+	static int findOpIndex(char*, int, int);
+	static int str2int(char*, int, int);
 
-	public:
-		DyaTreeMapper();
-		DyaTreeMapper(char*);
-
-		DyaTree* readFromString(char*);
-		DyaTree* parsePartString(char*, int, int);
+public:
+	static DyaTreeNode* create(char*);
 };
 
 #endif
