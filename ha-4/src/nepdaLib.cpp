@@ -38,32 +38,32 @@ bool nep::isMathOp(char c)
 		c == '*'
 	   )
 	{
+		#if DBG_DEBUG
 		printf("%c ist Operator!\n", c);
+		#endif
 		return true;
 	}
+	#if DBG_DEBUG
 	printf("%c ist nicht Operator!\n", c);
+	#endif
 	return false;
 };
 
 bool nep::isOperant(char c)
 {
-	printf("%c ist operant? ", c);
-
 	//printf("DA::isOperant(char %c): ASCII: %i", zeichen, zeichen);
 	if (c >= 'a' && c <= 'z')
 	{
-		printf("true\n");
 		return true;
 	}
 	if (c >= 'A' && c <= 'Z')
-	{printf("true\n");
+	{
 		return true;
 	}
 	if (c >= '0' && c <= '9')
-	{printf("true\n");
+	{
 		return true;
 	}
-	printf("false\n");
 	return false;
 };
 
@@ -71,7 +71,6 @@ bool nep::isSmallChar(char c)
 {
 	if (c >= 'a' && c <= 'z')
 	{
-		printf("true\n");
 		return true;
 	}
 	return false;
