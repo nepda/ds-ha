@@ -8,13 +8,11 @@
 #include <iostream>
 #include <stdio.h>
 
-#include "nepdaLib.hpp"
+#include "headers.hpp"
 
-#include "DA.hpp"
-#include "exprStack.hpp"
-#include "Bracket.hpp"
-#include "DyaTree.hpp"
-#include "DyaTreeMapper.hpp"
+#include "sources.cpp"
+
+
 
 #define DBG_DEBUG   1
 #define DBG_SWM     1 // DEBUG_SPEAK_WITH_ME
@@ -31,21 +29,26 @@ int main (int argc, char** argv)
 		return 1;
 	}
 	char* input;
-	DyaTreeMapper* dtm = new DyaTreeMapper();
+	//DyaTreeMapper* dtm = new DyaTreeMapper();
 
 	input = argv[1];
+
 	#if DBG_SWM
-	std::cout << "input: " << input << std::endl;
+	std::cout << "DBG: input: " << input << std::endl;
+	std::cout << "DBG: nep::strlen('" << input << "'): " << nep::strlen(input) << std::endl;
 	#endif
 
-	std::cout << "nep::strlen('" << input << "'): " << nep::strlen(input) << std::endl;
-
-	dtm->readFromString(input);
 
 	Bracket* Br = new Bracket();
 
-	Br->pExpr2bExpr(input);
+	char* bracket_expr = Br->pExpr2bExpr(input);
 
+	printf("DBG: bracket expr.: %s", bracket_expr);
+
+// ((2*3)-(a+(6-((b*0)))))
+
+
+	//dtm->readFromString(bracket_expr);
 
 
 	return 0;

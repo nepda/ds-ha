@@ -15,3 +15,8 @@ DyaTree::~DyaTree()
 {
 
 };
+
+DyaTreeNode* DyaTree::getRoot()
+{
+	return this->root;
+}

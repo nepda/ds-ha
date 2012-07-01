@@ -19,7 +19,9 @@ char* Bracket::pExpr2bExpr(char* expr)
 	int close = 0; // Anzahl der schließenden Kalmmern
 	exprStack* s = new exprStack();
 
-	std::cout << "strlen: " << length << std::endl;
+	#if DBG_SWM
+	std::cout << "DBG: strlen: " << length << std::endl;
+	#endif
 
 	int insert_close_n_plus_2 = -1;
 
@@ -28,7 +30,6 @@ char* Bracket::pExpr2bExpr(char* expr)
 	char tmp; // aktuelles Zeichen
 	for (int i = 0; i < length ; i++) // jedes Zeichen durchlaufen
 	{
-
 		tmp = expr[i]; // für schnelleren/leichteren Zugriff ist das aktuelle Zeichen in 'tmp' gespeichert
 
 		if (insert_close_n_plus_2 == i)
@@ -57,11 +58,11 @@ char* Bracket::pExpr2bExpr(char* expr)
 			s->push(tmp);
 		}
 
-
+		/*
 		if (i > 10){
 		s->lookInsideQueue();
 		return 0;
-		}
+		}*/
 	}
 
 	while (open >= close)
@@ -70,20 +71,5 @@ char* Bracket::pExpr2bExpr(char* expr)
 	}
 	s->push(')');
 
-	s->lookInsideQueue();
-
-	//while (open < close)
-	{
-		// s->push(')'); close++;
-	}
-
-	/*
-	while(!s->isEmpty())
-	{
-		char tmp = s->dequeue();
-		printf("%c", tmp);
-	}
-	*/
-	return 0;
-	//s.push(')'); close++; // letzte schließende Kalmmer immer setzen
+	return s->toQueueString();
 }

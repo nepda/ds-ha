@@ -9,11 +9,11 @@
 
 #define DBG_NL 1
 
+
 class nep {
 
 public:
 	static int strlen(char*);
 };
 
-#include "nepdaLib.cpp"
 #endif

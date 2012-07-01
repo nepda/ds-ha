@@ -19,10 +19,11 @@ public:
 
 	DyaTree();
 	~DyaTree();
+
+	DyaTreeNode* getRoot();
+
 };
 
-
-#include "DyaTree.cpp"
 #endif
 
 

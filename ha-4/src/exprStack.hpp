@@ -33,7 +33,12 @@ public:
 
 	void lookInside();
 	void lookInsideQueue();
+
+	char* toString();
+	char* toQueueString();
+
+	int length();
 };
 
-#include "exprStack.cpp"
+
 #endif

@@ -109,3 +109,66 @@ void exprStack::lookInsideQueue()
 	//printf("%c.%i", tail->data, tail->i);
 	printf("%c", tail->data);
 };
+
+int exprStack::length()
+{
+	node* tmp = this->head;
+	int i = 0;
+
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	};
+	return i;
+};
+
+char* exprStack::toString()
+{
+	char* str = new char[this->length()];
+	node* tmp = this->head;
+
+	int i = 0;
+
+	while (tmp)
+	{
+		str[i] = tmp->data;
+		tmp = tmp->next;
+		i++;
+	}
+	printf("DBG: toString(): %s\n", str);
+
+	return str;
+};
+
+
+char* exprStack::toQueueString()
+{
+	char* str = new char[this->length()];
+
+	node* tmp = this->head;
+
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+
+	// tmp ist jetzt ende
+
+	int i = 0;
+
+	//printf("DBG: tmp->data: %c", tmp->data);
+
+	while (tmp)
+	{
+		str[i] = tmp->data;
+		tmp = tmp->prev;
+		i++;
+	}
+	//printf("DBG: toQueueString(): %s\n", str);
+
+	return str;
+};
+
+
+

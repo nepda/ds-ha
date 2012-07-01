@@ -17,8 +17,7 @@ class DyaTreeMapper {
 		DyaTreeMapper(char*);
 
 		DyaTree* readFromString(char*);
+		DyaTree* parsePartString(char*, int, int);
 };
 
-
-#include "DyaTreeMapper.cpp"
 #endif

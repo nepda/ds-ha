@@ -15,5 +15,4 @@ public:
 	char* pExpr2bExpr(char*);
 };
 
-#include "Bracket.cpp"
 #endif

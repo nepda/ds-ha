@@ -20,6 +20,4 @@ public:
 	static bool isOperant(char);
 };
 
-
-#include "DA.cpp"
 #endif
