@@ -39,16 +39,9 @@ int main (int argc, char** argv)
 	#endif
 
 
-	Bracket* Br = new Bracket();
+	exprStack* eS = exprStackMapper::create(input);
 
-	char* bracket_expr = Br->pExpr2bExpr(input);
-
-	printf("DBG: bracket expr.: %s", bracket_expr);
-
-// ((2*3)-(a+(6-((b*0)))))
-
-
-	//dtm->readFromString(bracket_expr);
+	printf("%s", eS->toQueueString());
 
 
 	return 0;

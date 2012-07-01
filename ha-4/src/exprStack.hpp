@@ -11,13 +11,8 @@
 class exprStack {
 
 private:
-	struct node {
-		char data;
-		int i;
-		node* prev;
-		node* next;
-	};
-	node* head;
+
+	exprStackNode* head;
 
 	int i;
 
@@ -26,10 +21,14 @@ public:
 	~exprStack();
 
 	bool isEmpty();
-	void push(char data);
-	char pop();
 
-	char dequeue();
+	void push(char*);
+	void push(char*, int, int);
+	void push(char);
+
+	char* pop();
+
+	char* dequeue();
 
 	void lookInside();
 	void lookInsideQueue();

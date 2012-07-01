@@ -72,4 +72,6 @@ char* Bracket::pExpr2bExpr(char* expr)
 	s->push(')');
 
 	return s->toQueueString();
-}
+};
+
+

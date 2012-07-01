@@ -9,8 +9,10 @@
 #include "nepdaLib.cpp"
 
 #include "DA.cpp"
+#include "exprStackNode.cpp"
 #include "exprStack.cpp"
-#include "Bracket.cpp"
+#include "exprStackMapper.cpp"
+//#include "Bracket.cpp"
 #include "DyaTree.cpp"
 #include "DyaTreeNode.cpp"
 #include "DyaTreeMapper.cpp"

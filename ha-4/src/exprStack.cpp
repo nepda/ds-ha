@@ -15,7 +15,7 @@ exprStack::exprStack()
 
 exprStack::~exprStack()
 {
-	node* tmp = this->head;
+	exprStackNode* tmp = this->head;
 	while (tmp)
 	{
 		head = head->next;
@@ -30,11 +30,12 @@ bool exprStack::isEmpty()
 	return (head == 0);
 };
 
-void exprStack::push(char data)
+void exprStack::push(char* data)
 {
+	printf("exprStack::push(char* '%s')\n", data);
 	this->i++;
-	node* tmp = new node();
-	tmp->data = data;
+	exprStackNode* tmp = new exprStackNode();
+	tmp->setData(data);
 	tmp->i = this->i;
 	tmp->next = head;
 
@@ -44,14 +45,47 @@ void exprStack::push(char data)
 	head = tmp;
 };
 
-char exprStack::pop()
+void exprStack::push(char* data, int start, int end)
+{
+	printf("exprStack::push(char* '%s', int %i, int %i)\n", data, start, end);
+	char* str = new char[end-start];
+
+	int c = 0;
+
+	for (int i = start; i < end; i++)
+	{
+		// printf("exprStack::push(char* '%s', int %i, int %i) str[%i] = data[%i]\n", data, start, end);
+		str[c] = data[i];
+		c++;
+	}
+
+	printf("exprStack::push(char* '%s', int %i, int %i), str: %s\n", data, start, end, str);
+	this->push(str);
+};
+
+void exprStack::push(char data)
+{
+	printf("exprStack::push(char '%c')\n", data);
+	this->i++;
+	exprStackNode* tmp = new exprStackNode();
+	tmp->setData(data);
+	tmp->i = this->i;
+	tmp->next = head;
+
+	if (!this->isEmpty())
+	head->prev = tmp;
+
+	head = tmp;
+};
+
+char* exprStack::pop()
 {
 	if (!this->isEmpty())
 	{
-		char data;
-		data = head->data;
+		char* data;
+		data = head->getData();
 
-		node* tmp = head;
+		exprStackNode* tmp = head;
 
 		head = head->next;
 		head->prev = 0;
@@ -63,56 +97,24 @@ char exprStack::pop()
 	return 0;
 };
 
-char exprStack::dequeue()
+char* exprStack::dequeue()
 {
 	if (!this->isEmpty())
 	{
-		node* tmp = this->head;
+		exprStackNode* tmp = this->head;
 		while (tmp->next)
 		{
 			tmp = tmp->next;
 		}
-		return tmp->data;
+		return tmp->getData();
 	}
 
 	return 0;
 };
 
-void exprStack::lookInside()
-{
-	node* tmp = this->head;
-
-	while (tmp->next)
-	{
-		printf("%c.%i", tmp->data, tmp->i);
-
-		tmp = tmp->next;
-	}
-	printf("%c.%i", tmp->data, tmp->i);
-};
-
-void exprStack::lookInsideQueue()
-{
-	node* tail = this->head;
-
-	while (tail->next)
-	{
-		tail = tail->next;
-	}
-
-	while (tail->prev)
-	{
-		//printf("%c.%i", tail->data, tail->i);
-		printf("%c", tail->data);
-		tail = tail->prev;
-	}
-	//printf("%c.%i", tail->data, tail->i);
-	printf("%c", tail->data);
-};
-
 int exprStack::length()
 {
-	node* tmp = this->head;
+	exprStackNode* tmp = this->head;
 	int i = 0;
 
 	while (tmp)
@@ -125,49 +127,91 @@ int exprStack::length()
 
 char* exprStack::toString()
 {
-	char* str = new char[this->length()];
-	node* tmp = this->head;
+	exprStackNode* tmp = this->head;
+
+	int stack_size = this->length();
+
+	char* str[stack_size];
+
+	int len = 0;
 
 	int i = 0;
 
 	while (tmp)
 	{
-		str[i] = tmp->data;
+		str[i] = tmp->getData();
+
+		len += nep::strlen(str[i]);
+
 		tmp = tmp->next;
 		i++;
 	}
-	printf("DBG: toString(): %s\n", str);
+	printf("DBG: toString(), len: %i\n", len);
 
-	return str;
+	char* value = new char[len];
+
+	int j = 0;
+	int u;
+
+	for (int k = 0; k < stack_size; k++)
+	{
+		u = nep::strlen(str[k]);
+		for(int c = 0; c < u; c++)
+		{
+			value[j] = str[k][c];
+			j++;
+		}
+	}
+
+	return value;
 };
 
 
 char* exprStack::toQueueString()
 {
-	char* str = new char[this->length()];
-
-	node* tmp = this->head;
+	exprStackNode* tmp = this->head;
 
 	while (tmp->next)
 	{
 		tmp = tmp->next;
-	}
+	} // tmp ist jetzt ende
 
-	// tmp ist jetzt ende
+
+	int stack_size = this->length();
+
+	char* str[stack_size];
+
+	int len = 0;
 
 	int i = 0;
 
-	//printf("DBG: tmp->data: %c", tmp->data);
-
 	while (tmp)
 	{
-		str[i] = tmp->data;
+		str[i] = tmp->getData();
+
+		len += nep::strlen(str[i]);
+
 		tmp = tmp->prev;
 		i++;
 	}
-	//printf("DBG: toQueueString(): %s\n", str);
+	printf("DBG: toStringQueue(), len: %i\n", len);
 
-	return str;
+	char* value = new char[len];
+
+	int j = 0;
+	int u;
+
+	for (int k = 0; k < stack_size; k++)
+	{
+		u = nep::strlen(str[k]);
+		for(int c = 0; c < u; c++)
+		{
+			value[j] = str[k][c];
+			j++;
+		}
+	}
+
+	return value;
 };
 
 

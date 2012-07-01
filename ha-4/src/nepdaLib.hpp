@@ -1,5 +1,5 @@
 /**
- * Datenstrukturen SS2012 - Hausaufgabe 4
+ * Datenstrukturen SS2012
  * // nepdaLib.hpp
  *
  * @author Nepomuk Frädrich 247041 <nepf@informatik.tu-chemnitz.de>
@@ -14,6 +14,10 @@ class nep {
 
 public:
 	static int strlen(char*);
+
+	static bool isDigit(char);
+	static bool isMathOp(char);
+	static bool isOperant(char);
 };
 
 #endif
