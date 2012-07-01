@@ -51,14 +51,14 @@ int main (int argc, char** argv)
 
 
 
+	// Vereinfachen:
+	DyaTreeMapper::simplify(Dtn);
+
 	printf("\nPre-Order: \n");
 	Dt->preorder();
 
-
-
-
-	//printf("_#_%s::%s::%i\n", __FILE__, __func__, __LINE__);
-
+	printf("\nIn-Order: \n");
+	Dt->inorder();
 
 
 	return 0;

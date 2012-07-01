@@ -118,12 +118,14 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 		return;
 	}
 
+
 	DyaTreeMapper::simplify(root->left);
 	DyaTreeMapper::simplify(root->right);
 
 	switch(root->oper)
 	{
 		case '+':
+
 
 			// links zahl, rechts zahl => summe wird knoten
 			// rechts zahl, links zahl => summe wird knoten
@@ -135,6 +137,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left  = 0;
 				root->right = 0;
+				return;
 			}
 
 			// links 0 (zahl), rechts buchstabe => rechts wird knoten
@@ -150,8 +153,8 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
-
 
 			// rechts 0 (zahl), links buchstabe => links wird knoten
 			if (
@@ -166,6 +169,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 
 			break;
@@ -182,6 +186,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left  = 0;
 				root->right = 0;
+				return;
 			}
 
 			// links 0 (zahl), rechts buchstabe => rechts wird knoten
@@ -197,6 +202,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 
 
@@ -213,6 +219,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 			break;
 		case '*':
@@ -230,6 +237,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 
 			// links 1 (zahl), rechts zahl => rechte zahl wird knoten
@@ -241,6 +249,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 			// links 1 (zahl), rechts buchstabe => rechter buchstabe wird knoten
 			if (root->left->type == 'N' && root->left->number == 1 && root->right->type == 'C')
@@ -251,6 +260,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 
 			// rechts 1 (zahl), links zahl, linke zahl wird knoten
@@ -262,6 +272,7 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
 			// rechts 1 (zahl), links buchstabe, linker buchstabe wird knoten
 			if (root->right->type == 'N' && root->right->number == 1 && root->left->type == 'C')
@@ -272,10 +283,9 @@ void DyaTreeMapper::simplify(DyaTreeNode* root)
 				delete root->right;
 				root->left = 0;
 				root->right = 0;
+				return;
 			}
-
 			break;
-
 	}
 
 };
