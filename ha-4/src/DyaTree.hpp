@@ -15,16 +15,16 @@ class DyaTree {
 private:
 	DyaTreeNode* root;
 
-	void _print(DyaTreeNode* tmp);
+	void _inorder(DyaTreeNode*);
 
 public:
 
-	DyaTree(DyaTreeNode* root);
+	DyaTree(DyaTreeNode*);
 	~DyaTree();
 
 	DyaTreeNode* getRoot();
 
-	void print();
+	void inorder();
 
 };
 

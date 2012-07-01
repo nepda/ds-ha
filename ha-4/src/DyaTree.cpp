@@ -21,32 +21,30 @@ DyaTreeNode* DyaTree::getRoot()
 	return this->root;
 };
 
-void DyaTree::print()
+void DyaTree::inorder()
 {
-	printf("\n==============");
-	printf("\n==============\n");
-
 	this->_print(this->root);
-
-
-	printf("\n==============");
-	printf("\n==============\n");
 };
 
 
-void DyaTree::_print(DyaTreeNode* node)
+void DyaTree::_inorder(DyaTreeNode* root)
 {
-	node->printData();
-
-	if (node->left)
+	if (!root)
 	{
-		DyaTree::_print(node->left);
+		return;
 	}
 
-	if (node->right)
+	if (root->left)
 	{
-		DyaTree::_print(node->right);
+		printf("(");
+		DyaTree::_inorder(root->left);
 	}
-	printf("\n------------------------\n");
+	root->printData();
+
+	if (root->right)
+	{
+		DyaTree::_inorder(root->right);
+		printf(")");
+	}
 };
 
