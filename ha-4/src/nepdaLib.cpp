@@ -76,3 +76,26 @@ bool nep::isSmallChar(char c)
 	return false;
 };
 
+void nep::dbg(const char* file, int line, const char* msg, int level = nep::DBG_WARNING)
+{
+	switch (level)
+	{
+		case nep::DBG_INFO:
+
+			std::cout << "INFO: ";
+			break;
+		case nep::DBG_NOTICE:
+
+			std::cout << "NOTICE: ";
+			break;
+		case nep::DBG_WARNING:
+
+			std::cout << "WARNING: ";
+			break;
+		case nep::DBG_ERROR:
+
+			std::cout << "ERROR: ";
+			break;
+	}
+	std::cout << file << " on line " << line << ": " << msg << std::endl;
+};

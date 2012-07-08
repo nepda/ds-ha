@@ -1,0 +1,41 @@
+
+[indentation]
+indent_width=4
+indent_type=1
+indent_hard_tab_width=8
+detect_indent=false
+indent_mode=2
+
+[project]
+name=ha-5
+base_path=/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src
+description=
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=100
+
+[files]
+current_page=5
+FILE_NAME_0=281;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/main.cpp;0
+FILE_NAME_1=1235;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/nepdaLib.cpp;0
+FILE_NAME_2=541;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/nepdaLib.hpp;0
+FILE_NAME_3=213;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/sources.cpp;0
+FILE_NAME_4=225;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/headers.hpp;0
+FILE_NAME_5=577;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/Graph.cpp;0
+FILE_NAME_6=399;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/Graph.hpp;0
+FILE_NAME_7=86;Keiner;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/HA5-Graph.dat;0
+FILE_NAME_8=205;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/GraphMapper.hpp;0
+FILE_NAME_9=515;C++;0;16;1;1;0;/home/nepda/Dropbox/Studium/Datenstrukturen/SS12/Hausaufgaben/ds-ha/ha-5/src/GraphMapper.cpp;0
+
+[build-menu]
+EX_00_LB=_Ausführen
+EX_00_CM="./main" "../HA5-Graph.dat"
+EX_00_WD=
+C++FT_00_LB=_Kompilieren
+C++FT_00_CM=g++ -Wall -g -c "./main.cpp"
+C++FT_00_WD=
+C++FT_01_LB=_Erstellen
+C++FT_01_CM=g++ -Wall -g -o "./main" "./main.cpp"
+C++FT_01_WD=
+filetypes=C++;
