@@ -16,14 +16,15 @@ private:
       int id;
     };
 
-    node** nodes;
+    node* nodes;
 
 public:
 	Graph(int, int);
 	~Graph();
-	void setEdge(int, int);
+	void setEdge(int, int, int);
 	void delEdge(int, int);
 	bool getEdge(int, int);
 
 	void print();
+	void printAdjMatrix();
 };

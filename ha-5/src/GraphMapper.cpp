@@ -19,18 +19,45 @@ Graph* GraphMapper::readFile(char* filename)
 
 		int curr_int;
 		int int_count = 0;
-		//bool adj_started = false;
-		//int tmp_int_count = 0;
+		//bool adj_finish = false;
+		int tmp_int_count = 0;
 
 		int N = -1, M = -1;
 
 		Graph* G;
+
+		int tmp_start, tmp_end, tmp_weight;
 
 		while(datei >> curr_int)
 		{
 			if (int_count >= 2)
 			{
 				// Adjazentsangaben oder Anfragedaten
+				if ((int_count - 2) <= M*3)
+				{
+					// Kanten einlsen
+
+					if (tmp_int_count == 0)
+					{
+						tmp_start = curr_int;
+					} else if (tmp_int_count == 1) {
+
+						tmp_end = curr_int;
+					} else if (tmp_int_count == 2) {
+
+						tmp_weight = curr_int;
+
+						// alle drei Angaben erhalten, jetzt kann die Kante vollständig gesetzt werden
+						G->setEdge(tmp_start, tmp_end, tmp_weight);
+						tmp_int_count = -1; // minus 1 da, er gleich wieder ++ gemacht wird
+					}
+					tmp_int_count++;
+				} else {
+
+					// test Kosten-Abfragen einlesen
+
+					// TODO!
+				}
 			} else {
 
 				// N und M Angaben
